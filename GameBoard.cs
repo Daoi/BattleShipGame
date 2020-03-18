@@ -112,10 +112,6 @@ namespace BattleShipGame
         private void drawVertBar(int x, int y, Panel pnlBoard)
         {
             Color backColor = Color.Black;
-            if (x == 300 || x == 600)
-            {
-                backColor = Color.Red;
-            }
 
             Label lblVertBar = new Label
             {
