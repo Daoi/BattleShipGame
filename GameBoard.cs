@@ -134,11 +134,6 @@ namespace BattleShipGame
         private void drawHorizBar(int x, int y, int cardSize, Panel pnlBoard)
         {
             Color backColor = Color.Black;
-            if (y == 204 || y == 411)
-            {
-                backColor = Color.Red;
-            }
-
             Label lblHorizBar = new Label
             {
                 BackColor = backColor,
