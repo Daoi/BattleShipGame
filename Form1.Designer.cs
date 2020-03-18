@@ -1,6 +1,6 @@
 ﻿namespace BattleShipGame
 {
-    partial class Form1
+    partial class frmWelcome
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnDoStuff = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnDoStuff
+            // 
+            this.btnDoStuff.Location = new System.Drawing.Point(227, 251);
+            this.btnDoStuff.Name = "btnDoStuff";
+            this.btnDoStuff.Size = new System.Drawing.Size(75, 23);
+            this.btnDoStuff.TabIndex = 0;
+            this.btnDoStuff.Text = "Do stuff";
+            this.btnDoStuff.UseVisualStyleBackColor = true;
+            this.btnDoStuff.Click += new System.EventHandler(this.doStuff);
+            // 
+            // frmWelcome
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(647, 492);
+            this.Controls.Add(this.btnDoStuff);
+            this.Name = "frmWelcome";
+            this.Text = "Welcome to Battleship";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnDoStuff;
     }
 }
 

@@ -1,0 +1,11 @@
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\bin\Debug\BattleShipGame.exe.config
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\bin\Debug\BattleShipGame.exe
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\bin\Debug\BattleShipGame.pdb
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.csprojAssemblyReference.cache
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.Properties.Resources.resources
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.csproj.GenerateResource.cache
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.csproj.CoreCompileInputs.cache
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.exe
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.pdb
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.frmGameBoard.resources
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.frmWelcome.resources

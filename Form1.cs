@@ -10,11 +10,23 @@ using System.Windows.Forms;
 
 namespace BattleShipGame
 {
-    public partial class Form1 : Form
+    public partial class frmWelcome : Form
     {
-        public Form1()
+        public frmWelcome()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void doStuff(object sender, EventArgs e)
+        {
+            Hide();
+            frmGameBoard gameBoard = new frmGameBoard();
+            gameBoard.Show();
         }
     }
 }
