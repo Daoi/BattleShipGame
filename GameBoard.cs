@@ -12,6 +12,11 @@ namespace BattleShipGame
 {
     public partial class frmGameBoard : Form
     {
+
+        Button[,] shipBoard;
+        Button[,] guessBoard;
+        static int[] testShipCords = { 41, 42, 43, 44, 45 };
+        Ship ship = new Ship(testShipCords, "Carrier");
         int cardCellWidth;
         int cardCellHeight;
         int barWidth = 3;  // Width or thickness of horizontal and vertical bars
@@ -38,9 +43,9 @@ namespace BattleShipGame
         private void DisplayBoards(int[,] internalBoard)
         {
             //Create shipBoard
-            Button[,] shipBoard = GenerateBoard(internalBoard, pnlShipBoard);
+            shipBoard = GenerateBoard(internalBoard, pnlShipBoard);
             //Create guessBoard
-            Button[,] guessBoard = GenerateBoard(internalBoard, pnlGuessBoard);
+            guessBoard = GenerateBoard(internalBoard, pnlGuessBoard);
             //Give boards to player object
         }
 
@@ -76,22 +81,23 @@ namespace BattleShipGame
                     };
 
                     board[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
-                //int value = InternalBoardClass.getCellValue(row, col); Not implemented yet
-                int value = internalBoard[row, col];
-                board[row, col].Text = value.ToString();
-                board[row, col].Tag = value.ToString();
-                board[row, col].Name = "btn" + row.ToString() + col.ToString();
-                board[row, col].BackColor = Color.Aqua;
+                    //int value = InternalBoardClass.getCellValue(row, col); Not implemented yet
+                    int value = internalBoard[row, col];
+                    board[row, col].Text = value.ToString();
+                    board[row, col].Tag = value.ToString();
+                    board[row, col].Name = "btn" + row.ToString() + col.ToString();
+                    board[row, col].BackColor = Color.Aqua;
 
-                //Associates the same event handler with each of the buttons generated
-                board[row, col].MouseClick += new MouseEventHandler(Button_MouseClick);
 
-                // Add button to the form
-                pnlBoard.Controls.Add(board[row, col]);
+                    //Associates the same event handler with each of the buttons generated
+                    board[row, col].MouseClick += new MouseEventHandler(Button_MouseClick);
 
-                // Draw vertical line                 
-                x += cardCellWidth + padding;
-                if (row == 0) drawVertBar(x, y, pnlBoard);
+                    // Add button to the form
+                    pnlBoard.Controls.Add(board[row, col]);
+
+                    // Draw vertical line                 
+                    x += cardCellWidth + padding;
+                    if (row == 0) drawVertBar(x, y, pnlBoard);
                 } // end for col
                 // One row now complete
 
@@ -148,19 +154,43 @@ namespace BattleShipGame
             x = x + cardCellWidth;
         }
 
-        private void lblShipBoard_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlShipBoard_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         //Board Creation End
 
+        public void DisplayShips()
+        {
+            foreach(Button btn in shipBoard)
+            {
+                if((string)btn.Tag == "1") {//Ship
+                    btn.BackColor = Color.DarkGray;
+                }
+                else if((string)btn.Tag == "2"){//Hits
+                    btn.BackColor = Color.Red;
+                }
+                else if ((string)btn.Tag == "3")//Miss
+                {
+                    btn.BackColor = Color.White;
+                }
+            }
 
+            foreach(Button btn in guessBoard)
+            {
+                if((string)btn.Tag == "2")//Hits
+                {
+                    btn.BackColor = Color.Red;
+                }
+                else if ((string)btn.Tag == "3")//Miss
+                {
+                    btn.BackColor = Color.White;
+                }
+            }
+        }
 
+        private void btnDoneTurn_Click(object sender, EventArgs e)
+        {
+            shipBoard[4, 5].Tag = "2";
+            shipBoard[6, 4].Tag = "3";
+            DisplayShips();
+            
+        }
     }
 }

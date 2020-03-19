@@ -37,6 +37,7 @@
             this.btnDoneTurn = new System.Windows.Forms.Button();
             this.lblCurrentPlayer = new System.Windows.Forms.Label();
             this.lblInstructions = new System.Windows.Forms.Label();
+            this.lblShipImageOne = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,6 @@
             this.pnlShipBoard.Name = "pnlShipBoard";
             this.pnlShipBoard.Size = new System.Drawing.Size(500, 503);
             this.pnlShipBoard.TabIndex = 0;
-            this.pnlShipBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlShipBoard_Paint);
             // 
             // pnlGuessBoard
             // 
@@ -63,7 +63,6 @@
             this.lblShipBoard.Size = new System.Drawing.Size(59, 13);
             this.lblShipBoard.TabIndex = 2;
             this.lblShipBoard.Text = "Ship Board";
-            this.lblShipBoard.Click += new System.EventHandler(this.lblShipBoard_Click);
             // 
             // lblGuessBoard
             // 
@@ -90,6 +89,7 @@
             this.btnDoneTurn.TabIndex = 5;
             this.btnDoneTurn.Text = "Done Turn";
             this.btnDoneTurn.UseVisualStyleBackColor = true;
+            this.btnDoneTurn.Click += new System.EventHandler(this.btnDoneTurn_Click);
             // 
             // lblCurrentPlayer
             // 
@@ -108,11 +108,19 @@
             this.lblInstructions.TabIndex = 7;
             this.lblInstructions.Text = "label1";
             // 
+            // lblShipImageOne
+            // 
+            this.lblShipImageOne.Location = new System.Drawing.Point(465, 661);
+            this.lblShipImageOne.Name = "lblShipImageOne";
+            this.lblShipImageOne.Size = new System.Drawing.Size(100, 23);
+            this.lblShipImageOne.TabIndex = 8;
+            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.lblShipImageOne);
             this.Controls.Add(this.lblInstructions);
             this.Controls.Add(this.lblCurrentPlayer);
             this.Controls.Add(this.pnlShipBoard);
@@ -140,5 +148,6 @@
         private System.Windows.Forms.Button btnDoneTurn;
         private System.Windows.Forms.Label lblCurrentPlayer;
         private System.Windows.Forms.Label lblInstructions;
+        private System.Windows.Forms.Label lblShipImageOne;
     }
 }
