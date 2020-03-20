@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace BattleShipGame
 {
-    internal class Ship
+    public class Ship
     {
         //To get the number for the cords array, e.g. for the position [5,6] You do the first ((first index - 1) * 9) + the second index. 
         //e.g. (4*9) + 6 = 42. 42 is the number we add to the array we give to the ship for its location.  
@@ -12,14 +12,15 @@ namespace BattleShipGame
         private int hits;
         private string shipType;//Can store what type of ship something is(e.g. carrier), might be useful down the line
         //2 = Destroyer, 3 = Submarine or Cruiser, 4 = Battleship, 5 = Carrier
+        
 
 
-        public Ship(int[] cords, string type)
+        public Ship(string type, int size)
         {
-            this.cords = cords;
-            size = cords.Length;
+            this.size = size;
             hits = 0;
             shipType = type;
+            cords = new int[size];
 
         }
 
@@ -41,9 +42,23 @@ namespace BattleShipGame
             return index;
         }
 
+        public void setCords(int[] cords) 
+        {
+            this.cords = cords;
+        }
+
         public int[] GetCords()
         {
             return cords;
+        }
+
+        public string getShipType()
+        {
+            return shipType;
+        }
+        public int getShipSize()
+        {
+            return size;
         }
     }
 }

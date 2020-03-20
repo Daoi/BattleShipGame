@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace BattleShipGame
 {
     public partial class frmGameBoard : Form
     {
-
+        Player asdfa = new Player("testPlayer");
         Button[,] shipBoard;
         Button[,] guessBoard;
         static int[] testShipCords = { 41, 42, 43, 44, 45 };
-        Ship ship = new Ship(testShipCords, "Carrier");
+        //Ship ship = new Ship(testShipCords, "Carrier");
         int cardCellWidth;
         int cardCellHeight;
         int barWidth = 3;  // Width or thickness of horizontal and vertical bars
@@ -156,6 +149,13 @@ namespace BattleShipGame
 
         //Board Creation End
 
+        //Set the backcolor for the tiles to grey if there is a ship there(Only on the ship board)
+        //Set the backcolor for the tiles to red if there is a hit marked there(On both boards)
+        //Set the backcolor for the tiles to white if there is a miss marked there(On both boards)
+        //Red/White markers on the ship board represent the other players hits/misses. Grey represents current players ships.
+        //Red/white markers on the guess board represent the current players hit/misses
+        //When handle hits/misses etc we just need to change the btn's tag value. E.g. Player 1 clicks on guessBoard[2,2] and its a miss
+        //so set Player 1s guessBoard[2,2].Tag = 3 and Player 2s shipBoard[2,2].Tag = 3
         public void DisplayShips()
         {
             foreach(Button btn in shipBoard)
@@ -184,11 +184,16 @@ namespace BattleShipGame
                 }
             }
         }
+        //Use this to set a buttons tag to its new status after a hit/miss
+        //Value represents the new state. (2 = Hit, 3 = Miss) btn is the tile that was clicked/guessed.
+        public void updateTileStatus(Button btn, string value)
+        {
+            btn.Tag = value;
+        }
+
 
         private void btnDoneTurn_Click(object sender, EventArgs e)
         {
-            shipBoard[4, 5].Tag = "2";
-            shipBoard[6, 4].Tag = "3";
             DisplayShips();
             
         }

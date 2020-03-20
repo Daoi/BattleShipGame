@@ -9,3 +9,4 @@ C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGam
 C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.pdb
 C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.frmGameBoard.resources
 C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.frmWelcome.resources
+C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGame.frmShipPlacement.resources

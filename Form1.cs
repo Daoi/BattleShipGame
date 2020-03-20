@@ -24,9 +24,21 @@ namespace BattleShipGame
 
         private void doStuff(object sender, EventArgs e)
         {
-            Hide();
-            frmGameBoard gameBoard = new frmGameBoard();
-            gameBoard.Show();
+            if (string.IsNullOrWhiteSpace(txtPlayerOne.Text) || string.IsNullOrWhiteSpace(txtPlayerTwo.Text))
+            {
+                MessageBox.Show("Enter a name", "Invalid Name");
+            }
+            else {
+
+                Player playerOne = new Player(txtPlayerOne.Text);
+                Player playerTwo = new Player(txtPlayerTwo.Text);
+
+                Hide();
+                //frmGameBoard gameBoard = new frmGameBoard();
+                frmShipPlacement placementBoard = new frmShipPlacement(playerOne, playerTwo, 0);
+                //gameBoard.Show();
+                placementBoard.Show();
+            }
         }
     }
 }
