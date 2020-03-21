@@ -119,11 +119,6 @@ namespace BattleShipGame
             return board;
         }
 
-        private void Button_MouseClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void drawVertBar(int x, int y, Panel pnlBoard)
         {
             Color backColor = Color.Black;
@@ -164,6 +159,9 @@ namespace BattleShipGame
         }
 
         //Board Creation End
+        //
+        //
+        //
 
         private void Button_MouseClickPlacement(object sender, EventArgs e)
         {
@@ -218,15 +216,23 @@ namespace BattleShipGame
                 btnNextShip.Text = "Next Player";
                 btnNextShip.BackColor = Color.LawnGreen;
             }
+            if (shipNumber == 5 && playerNum == 2)
+            {
+                btnNextShip.Text = "Play Game!";
+                btnNextShip.BackColor = Color.Red;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
             int size = currentShip.getShipSize();
-            for(int i = col; i != (col-(size)); i-- )
+            List<string> shipCords = new List<string>();
+            for (int i = col; i != (col-(size)); i-- )
             {
                 currentInternalBoard.placeShip(row, i);
                 board[row, i].BackColor = Color.DarkGray;
+                shipCords.Add(row + "*" + i);
             }
+            currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
@@ -243,16 +249,23 @@ namespace BattleShipGame
                 btnNextShip.Text = "Next Player";
                 btnNextShip.BackColor = Color.LawnGreen;
             }
+            if (shipNumber == 5 && playerNum == 2)
+            {
+                btnNextShip.Text = "Play Game!";
+                btnNextShip.BackColor = Color.Red;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
             int size = currentShip.getShipSize();
+            List<string> shipCords = new List<string>();
             for (int i = col; i != (col + (size)); i++)
             {
-
                 currentInternalBoard.placeShip(row, i);
                 board[row, i].BackColor = Color.DarkGray;
+                shipCords.Add(row + "*" + i);
             }
+            currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
@@ -269,15 +282,23 @@ namespace BattleShipGame
                 btnNextShip.Text = "Next Player";
                 btnNextShip.BackColor = Color.LawnGreen;
             }
+            if (shipNumber == 5 && playerNum == 2)
+            {
+                btnNextShip.Text = "Play Game!";
+                btnNextShip.BackColor = Color.Red;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
             int size = currentShip.getShipSize();
+            List<string> shipCords = new List<string>();
             for (int i = row; i != (row - (size)); i--)
             {
                 currentInternalBoard.placeShip(i, col);
                 board[i, col].BackColor = Color.DarkGray;
+                shipCords.Add(i + "*" + col);
             }
+            currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
@@ -294,15 +315,23 @@ namespace BattleShipGame
                 btnNextShip.Text = "Next Player";
                 btnNextShip.BackColor = Color.LawnGreen;
             }
+            if (shipNumber == 5 && playerNum == 2)
+            {
+                btnNextShip.Text = "Play Game!";
+                btnNextShip.BackColor = Color.Red;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
             int size = currentShip.getShipSize();
+            List<string> shipCords = new List<string>();
             for (int i = row; i != (row + (size)); i++)
             {
                 currentInternalBoard.placeShip(i, col);
                 board[i, col].BackColor = Color.DarkGray;
+                shipCords.Add(i + "*" + col);
             }
+            currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
             

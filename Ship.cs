@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace BattleShipGame
@@ -7,7 +9,7 @@ namespace BattleShipGame
     {
         //To get the number for the cords array, e.g. for the position [5,6] You do the first ((first index - 1) * 9) + the second index. 
         //e.g. (4*9) + 6 = 42. 42 is the number we add to the array we give to the ship for its location.  
-        private int[] cords;
+        private List<string> cords;
         private int size;
         private int hits;
         private string shipType;//Can store what type of ship something is(e.g. carrier), might be useful down the line
@@ -20,7 +22,7 @@ namespace BattleShipGame
             this.size = size;
             hits = 0;
             shipType = type;
-            cords = new int[size];
+            cords = new List<string>();
 
         }
 
@@ -42,12 +44,12 @@ namespace BattleShipGame
             return index;
         }
 
-        public void setCords(int[] cords) 
+        public void setCords(List<string> cords) 
         {
             this.cords = cords;
         }
 
-        public int[] GetCords()
+        public List<string> GetCords()
         {
             return cords;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 namespace BattleShipGame
@@ -36,6 +37,17 @@ namespace BattleShipGame
         private void GameBoard_Load(object sender, EventArgs e)
         {
             DisplayBoards(testBoard);
+            Ship[] p1Ships = playerOne.getShips();
+            foreach (Ship ship in p1Ships)
+            {
+                string cords = "P1 SHIP CORDS: ";
+                List<string> shipCords = ship.GetCords();
+                foreach (String cord in shipCords)
+                {
+                    cords += cord + " ";
+                }
+                MessageBox.Show(cords);
+            }
         }
 
         private void DisplayBoards(int[,] internalBoard)

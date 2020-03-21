@@ -21,3 +21,14 @@ C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.fr
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.csproj.GenerateResource.Cache
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.exe
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.pdb
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\bin\Debug\BattleShipGame.exe.config
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\bin\Debug\BattleShipGame.exe
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\bin\Debug\BattleShipGame.pdb
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.frmWelcome.resources
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.frmGameBoard.resources
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.Properties.Resources.resources
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.frmShipPlacement.resources
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.csproj.GenerateResource.Cache
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.exe
+C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.pdb
