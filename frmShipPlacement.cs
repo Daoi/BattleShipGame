@@ -12,8 +12,6 @@ namespace BattleShipGame
 {
     public partial class frmShipPlacement : Form
     {
-
-
         public frmShipPlacement(Player one, Player two, int currentPlayer)
         {
             InitializeComponent();
@@ -28,8 +26,8 @@ namespace BattleShipGame
             {
                 this.currentPlayer = two;
             }
-
         }
+
         Button[,] board;
         Player playerOne;
         Player playerTwo;
@@ -41,11 +39,11 @@ namespace BattleShipGame
         int xcardUpperLeft = 0;
         int ycardUpperLeft = 0;
         int padding = 2;
-        const int boardDimensions = 9;//X by X board size
+        const int boardDimensions = 9; //X by X board size
         Ship currentShip;
         InternalBoard currentInternalBoard;
         string[] currentCords = new string[2];
-        int shipNumber;//Counter for ship list
+        int shipNumber; //Counter for ship list
 
         private void frmShipPlacement_Load(object sender, EventArgs e)
         {
@@ -53,9 +51,8 @@ namespace BattleShipGame
             currentShip = currentPlayer.getShips()[shipNumber];
             GenerateBoard(pnlShipPlacementBoard);
             lblCurrentPlayerPlacement.Text = currentPlayer.getName() + " place your ships.";
-            lblCurrentShipName.Text = currentShip.getShipType() + " it has a lenght of " + currentShip.getShipSize().ToString();
+            lblCurrentShipName.Text = currentShip.getShipType() + ", it has a length of " + currentShip.getShipSize().ToString();
             shipNumber = 0;
-
         }
 
         private Button[,] GenerateBoard(Panel pnlBoard)
@@ -90,13 +87,9 @@ namespace BattleShipGame
                     };
 
                     board[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
-                    //int value = InternalBoardClass.getCellValue(row, col); Not implemented yet
-                    int value = 0;
-                    board[row, col].Text = value.ToString();
                     board[row, col].Tag = row.ToString() + "*" + col.ToString();
                     board[row, col].Name = "btn" + row.ToString() + col.ToString();
-                    board[row, col].BackColor = Color.Aqua;
-
+                    board[row, col].BackColor = Color.White;
 
                     //Associates the same event handler with each of the buttons generated
                     board[row, col].MouseClick += new MouseEventHandler(Button_MouseClickPlacement);
@@ -149,8 +142,6 @@ namespace BattleShipGame
                 TabIndex = 1000
             };
 
-
-
             pnlBoard.Controls.Add(lblHorizBar);
             lblHorizBar.Visible = true;
             lblHorizBar.CreateControl();
@@ -191,7 +182,6 @@ namespace BattleShipGame
             {
                 btnPlaceRight.Enabled = true;
                 sb.Append(" Right,");
-
             }
             //Down orientation
             if (currentInternalBoard.checkDown(int.Parse(currentCords[0]), int.Parse(currentCords[1]), shipSize))
@@ -200,8 +190,6 @@ namespace BattleShipGame
                 sb.Append(" Down,");
             }
             MessageBox.Show(sb.ToString().TrimEnd(','),"Valid Orientations");
-
-
         }
 
         private void btnPlaceLeft_Click(object sender, EventArgs e)
@@ -220,6 +208,7 @@ namespace BattleShipGame
             {
                 btnNextShip.Text = "Play Game!";
                 btnNextShip.BackColor = Color.Red;
+                btnNextShip.ForeColor = Color.White;
             }
 
             int row = int.Parse(currentCords[0]);
@@ -229,7 +218,7 @@ namespace BattleShipGame
             for (int i = col; i != (col-(size)); i-- )
             {
                 currentInternalBoard.placeShip(row, i);
-                board[row, i].BackColor = Color.DarkGray;
+                board[row, i].BackColor = Color.DarkSlateGray;
                 shipCords.Add(row + "*" + i);
             }
             currentShip.setCords(shipCords);
@@ -253,6 +242,7 @@ namespace BattleShipGame
             {
                 btnNextShip.Text = "Play Game!";
                 btnNextShip.BackColor = Color.Red;
+                btnNextShip.ForeColor = Color.White;
             }
 
             int row = int.Parse(currentCords[0]);
@@ -262,7 +252,7 @@ namespace BattleShipGame
             for (int i = col; i != (col + (size)); i++)
             {
                 currentInternalBoard.placeShip(row, i);
-                board[row, i].BackColor = Color.DarkGray;
+                board[row, i].BackColor = Color.DarkSlateGray;
                 shipCords.Add(row + "*" + i);
             }
             currentShip.setCords(shipCords);
@@ -286,6 +276,7 @@ namespace BattleShipGame
             {
                 btnNextShip.Text = "Play Game!";
                 btnNextShip.BackColor = Color.Red;
+                btnNextShip.ForeColor = Color.White;
             }
 
             int row = int.Parse(currentCords[0]);
@@ -295,7 +286,7 @@ namespace BattleShipGame
             for (int i = row; i != (row - (size)); i--)
             {
                 currentInternalBoard.placeShip(i, col);
-                board[i, col].BackColor = Color.DarkGray;
+                board[i, col].BackColor = Color.DarkSlateGray;
                 shipCords.Add(i + "*" + col);
             }
             currentShip.setCords(shipCords);
@@ -319,6 +310,7 @@ namespace BattleShipGame
             {
                 btnNextShip.Text = "Play Game!";
                 btnNextShip.BackColor = Color.Red;
+                btnNextShip.ForeColor = Color.White;
             }
 
             int row = int.Parse(currentCords[0]);
@@ -328,13 +320,12 @@ namespace BattleShipGame
             for (int i = row; i != (row + (size)); i++)
             {
                 currentInternalBoard.placeShip(i, col);
-                board[i, col].BackColor = Color.DarkGray;
+                board[i, col].BackColor = Color.DarkSlateGray;
                 shipCords.Add(i + "*" + col);
             }
             currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
-            
         }
 
         private void btnNextShip_Click(object sender, EventArgs e)
@@ -356,8 +347,6 @@ namespace BattleShipGame
                     secondPlayerPlacement.Show();
                     Close();
                 }
-                
-
             }
             else
             {
@@ -367,7 +356,6 @@ namespace BattleShipGame
                 lblCurrentShipName.Text = currentShip.getShipType() + " it has a lenght of " + currentShip.getShipSize().ToString();
                 btnNextShip.Enabled = false;
             }
-            
         }
     }
 }

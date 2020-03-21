@@ -15,8 +15,6 @@ namespace BattleShipGame
         private string shipType;//Can store what type of ship something is(e.g. carrier), might be useful down the line
         //2 = Destroyer, 3 = Submarine or Cruiser, 4 = Battleship, 5 = Carrier
         
-
-
         public Ship(string type, int size)
         {
             this.size = size;

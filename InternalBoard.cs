@@ -31,7 +31,8 @@ namespace BattleShipGame
             }
             return true;
         }
-        //4,4 size = 5 |4 5 6 7 8
+
+        
         public bool checkRight(int row, int col, int size)
         {
             if ((col + (size-1)) > 8)
@@ -74,12 +75,10 @@ namespace BattleShipGame
             {
                 if (board[i, col] == 1)
                 {
-
                     return false;
                 }
             }
             return true;
         }
-
     }
 }

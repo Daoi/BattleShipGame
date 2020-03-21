@@ -17,11 +17,6 @@ namespace BattleShipGame
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void doStuff(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtPlayerOne.Text) || string.IsNullOrWhiteSpace(txtPlayerTwo.Text))
@@ -29,7 +24,6 @@ namespace BattleShipGame
                 MessageBox.Show("Enter a name", "Invalid Name");
             }
             else {
-
                 Player playerOne = new Player(txtPlayerOne.Text);
                 Player playerTwo = new Player(txtPlayerTwo.Text);
 

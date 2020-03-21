@@ -28,107 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
-            this.pnlShipBoard = new System.Windows.Forms.Panel();
-            this.pnlGuessBoard = new System.Windows.Forms.Panel();
+            this.pnlShipBoard_P2 = new System.Windows.Forms.Panel();
+            this.pnlGuessBoard_P2 = new System.Windows.Forms.Panel();
             this.lblShipBoard = new System.Windows.Forms.Label();
             this.lblGuessBoard = new System.Windows.Forms.Label();
-            this.lblCurrentPlayersTurn = new System.Windows.Forms.Label();
             this.btnDoneTurn = new System.Windows.Forms.Button();
-            this.lblCurrentPlayer = new System.Windows.Forms.Label();
+            this.pnlShipBoard_P1 = new System.Windows.Forms.Panel();
+            this.pnlGuessBoard_P1 = new System.Windows.Forms.Panel();
+            this.lblShipInstructions = new System.Windows.Forms.Label();
+            this.lblGuessInstructions = new System.Windows.Forms.Label();
             this.lblInstructions = new System.Windows.Forms.Label();
-            this.lblShipImageOne = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
+            this.lblToPlay = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // pnlShipBoard
+            // pnlShipBoard_P2
             // 
-            this.pnlShipBoard.Location = new System.Drawing.Point(1, 1);
-            this.pnlShipBoard.Name = "pnlShipBoard";
-            this.pnlShipBoard.Size = new System.Drawing.Size(500, 503);
-            this.pnlShipBoard.TabIndex = 0;
+            this.pnlShipBoard_P2.Enabled = false;
+            this.pnlShipBoard_P2.Location = new System.Drawing.Point(1, 65);
+            this.pnlShipBoard_P2.Name = "pnlShipBoard_P2";
+            this.pnlShipBoard_P2.Size = new System.Drawing.Size(500, 503);
+            this.pnlShipBoard_P2.TabIndex = 0;
             // 
-            // pnlGuessBoard
+            // pnlGuessBoard_P2
             // 
-            this.pnlGuessBoard.Location = new System.Drawing.Point(507, 1);
-            this.pnlGuessBoard.Name = "pnlGuessBoard";
-            this.pnlGuessBoard.Size = new System.Drawing.Size(500, 503);
-            this.pnlGuessBoard.TabIndex = 1;
+            this.pnlGuessBoard_P2.Location = new System.Drawing.Point(507, 65);
+            this.pnlGuessBoard_P2.Name = "pnlGuessBoard_P2";
+            this.pnlGuessBoard_P2.Size = new System.Drawing.Size(500, 503);
+            this.pnlGuessBoard_P2.TabIndex = 1;
             // 
             // lblShipBoard
             // 
             this.lblShipBoard.AutoSize = true;
-            this.lblShipBoard.Location = new System.Drawing.Point(128, 507);
+            this.lblShipBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblShipBoard.Location = new System.Drawing.Point(191, 577);
             this.lblShipBoard.Name = "lblShipBoard";
-            this.lblShipBoard.Size = new System.Drawing.Size(59, 13);
+            this.lblShipBoard.Size = new System.Drawing.Size(100, 17);
             this.lblShipBoard.TabIndex = 2;
-            this.lblShipBoard.Text = "Ship Board";
+            this.lblShipBoard.Text = "My Ship Board";
             // 
             // lblGuessBoard
             // 
             this.lblGuessBoard.AutoSize = true;
-            this.lblGuessBoard.Location = new System.Drawing.Point(723, 507);
+            this.lblGuessBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblGuessBoard.Location = new System.Drawing.Point(697, 579);
             this.lblGuessBoard.Name = "lblGuessBoard";
-            this.lblGuessBoard.Size = new System.Drawing.Size(68, 13);
+            this.lblGuessBoard.Size = new System.Drawing.Size(113, 17);
             this.lblGuessBoard.TabIndex = 3;
-            this.lblGuessBoard.Text = "Guess Board";
-            // 
-            // lblCurrentPlayersTurn
-            // 
-            this.lblCurrentPlayersTurn.AutoSize = true;
-            this.lblCurrentPlayersTurn.Location = new System.Drawing.Point(465, 427);
-            this.lblCurrentPlayersTurn.Name = "lblCurrentPlayersTurn";
-            this.lblCurrentPlayersTurn.Size = new System.Drawing.Size(0, 13);
-            this.lblCurrentPlayersTurn.TabIndex = 4;
+            this.lblGuessBoard.Text = "My Guess Board";
             // 
             // btnDoneTurn
             // 
-            this.btnDoneTurn.Location = new System.Drawing.Point(921, 694);
+            this.btnDoneTurn.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnDoneTurn.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDoneTurn.Location = new System.Drawing.Point(710, 613);
             this.btnDoneTurn.Name = "btnDoneTurn";
-            this.btnDoneTurn.Size = new System.Drawing.Size(75, 23);
+            this.btnDoneTurn.Size = new System.Drawing.Size(85, 31);
             this.btnDoneTurn.TabIndex = 5;
             this.btnDoneTurn.Text = "Done Turn";
-            this.btnDoneTurn.UseVisualStyleBackColor = true;
+            this.btnDoneTurn.UseVisualStyleBackColor = false;
             this.btnDoneTurn.Click += new System.EventHandler(this.btnDoneTurn_Click);
             // 
-            // lblCurrentPlayer
+            // pnlShipBoard_P1
             // 
-            this.lblCurrentPlayer.AutoSize = true;
-            this.lblCurrentPlayer.Location = new System.Drawing.Point(466, 507);
-            this.lblCurrentPlayer.Name = "lblCurrentPlayer";
-            this.lblCurrentPlayer.Size = new System.Drawing.Size(0, 13);
-            this.lblCurrentPlayer.TabIndex = 6;
+            this.pnlShipBoard_P1.Enabled = false;
+            this.pnlShipBoard_P1.Location = new System.Drawing.Point(1, 65);
+            this.pnlShipBoard_P1.Name = "pnlShipBoard_P1";
+            this.pnlShipBoard_P1.Size = new System.Drawing.Size(500, 503);
+            this.pnlShipBoard_P1.TabIndex = 1;
+            // 
+            // pnlGuessBoard_P1
+            // 
+            this.pnlGuessBoard_P1.Location = new System.Drawing.Point(507, 65);
+            this.pnlGuessBoard_P1.Name = "pnlGuessBoard_P1";
+            this.pnlGuessBoard_P1.Size = new System.Drawing.Size(500, 503);
+            this.pnlGuessBoard_P1.TabIndex = 2;
+            // 
+            // lblShipInstructions
+            // 
+            this.lblShipInstructions.AutoSize = true;
+            this.lblShipInstructions.Location = new System.Drawing.Point(12, 650);
+            this.lblShipInstructions.Name = "lblShipInstructions";
+            this.lblShipInstructions.Size = new System.Drawing.Size(406, 13);
+            this.lblShipInstructions.TabIndex = 9;
+            this.lblShipInstructions.Text = "Ship Board: A board that represents your ships and hits / misses from the other p" +
+    "layer";
+            // 
+            // lblGuessInstructions
+            // 
+            this.lblGuessInstructions.AutoSize = true;
+            this.lblGuessInstructions.Location = new System.Drawing.Point(12, 674);
+            this.lblGuessInstructions.Name = "lblGuessInstructions";
+            this.lblGuessInstructions.Size = new System.Drawing.Size(391, 13);
+            this.lblGuessInstructions.TabIndex = 10;
+            this.lblGuessInstructions.Text = "Guess Board: A board that represents your hits / misses on the other players ship" +
+    "s";
             // 
             // lblInstructions
             // 
             this.lblInstructions.AutoSize = true;
-            this.lblInstructions.Location = new System.Drawing.Point(12, 584);
+            this.lblInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblInstructions.Location = new System.Drawing.Point(12, 623);
             this.lblInstructions.Name = "lblInstructions";
-            this.lblInstructions.Size = new System.Drawing.Size(35, 13);
-            this.lblInstructions.TabIndex = 7;
-            this.lblInstructions.Text = "label1";
+            this.lblInstructions.Size = new System.Drawing.Size(84, 17);
+            this.lblInstructions.TabIndex = 11;
+            this.lblInstructions.Text = "Instructions:";
             // 
-            // lblShipImageOne
+            // lblToPlay
             // 
-            this.lblShipImageOne.Location = new System.Drawing.Point(465, 661);
-            this.lblShipImageOne.Name = "lblShipImageOne";
-            this.lblShipImageOne.Size = new System.Drawing.Size(100, 23);
-            this.lblShipImageOne.TabIndex = 8;
+            this.lblToPlay.AutoSize = true;
+            this.lblToPlay.Location = new System.Drawing.Point(12, 699);
+            this.lblToPlay.Name = "lblToPlay";
+            this.lblToPlay.Size = new System.Drawing.Size(448, 13);
+            this.lblToPlay.TabIndex = 12;
+            this.lblToPlay.Text = "To Play: Click a cell on the guess board to make a hit attempt on a ship, then cl" +
+    "ick Done Turn";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label1.Location = new System.Drawing.Point(442, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 29);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Battleship";
             // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.lblShipImageOne);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblToPlay);
             this.Controls.Add(this.lblInstructions);
-            this.Controls.Add(this.lblCurrentPlayer);
-            this.Controls.Add(this.pnlShipBoard);
+            this.Controls.Add(this.lblGuessInstructions);
+            this.Controls.Add(this.lblShipInstructions);
+            this.Controls.Add(this.pnlShipBoard_P1);
+            this.Controls.Add(this.pnlGuessBoard_P1);
+            this.Controls.Add(this.pnlShipBoard_P2);
             this.Controls.Add(this.btnDoneTurn);
-            this.Controls.Add(this.lblCurrentPlayersTurn);
             this.Controls.Add(this.lblGuessBoard);
             this.Controls.Add(this.lblShipBoard);
-            this.Controls.Add(this.pnlGuessBoard);
+            this.Controls.Add(this.pnlGuessBoard_P2);
             this.Name = "frmGameBoard";
             this.Text = "Battleship";
             this.Load += new System.EventHandler(this.GameBoard_Load);
@@ -138,16 +180,17 @@
         }
 
         #endregion
-
-        private System.Diagnostics.PerformanceCounter performanceCounter1;
-        private System.Windows.Forms.Panel pnlShipBoard;
-        private System.Windows.Forms.Panel pnlGuessBoard;
+        private System.Windows.Forms.Panel pnlShipBoard_P2;
+        private System.Windows.Forms.Panel pnlGuessBoard_P2;
         private System.Windows.Forms.Label lblShipBoard;
         private System.Windows.Forms.Label lblGuessBoard;
-        private System.Windows.Forms.Label lblCurrentPlayersTurn;
         private System.Windows.Forms.Button btnDoneTurn;
-        private System.Windows.Forms.Label lblCurrentPlayer;
+        private System.Windows.Forms.Panel pnlShipBoard_P1;
+        private System.Windows.Forms.Panel pnlGuessBoard_P1;
+        private System.Windows.Forms.Label lblShipInstructions;
+        private System.Windows.Forms.Label lblGuessInstructions;
         private System.Windows.Forms.Label lblInstructions;
-        private System.Windows.Forms.Label lblShipImageOne;
+        private System.Windows.Forms.Label lblToPlay;
+        private System.Windows.Forms.Label label1;
     }
 }

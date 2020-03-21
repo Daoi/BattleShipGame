@@ -2,30 +2,26 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace BattleShipGame
 {
     public partial class frmGameBoard : Form
     {
         Player currentPlayer;
+        Player otherPlayer;
         Player playerOne;
         Player playerTwo;
+        int playerNum;
 
-        Button[,] shipBoard;
-        Button[,] guessBoard;
-        static int[] testShipCords = { 41, 42, 43, 44, 45 };
-        //Ship ship = new Ship(testShipCords, "Carrier");
+        int[,] board = new int[9, 9];
+
         int cardCellWidth;
         int cardCellHeight;
         int barWidth = 3;  // Width or thickness of horizontal and vertical bars
         int xcardUpperLeft = 0;
         int ycardUpperLeft = 0;
         int padding = 2;
-        const int boardDimensions = 9;//X by X board size
-        int[,] testBoard = new int[,] { { 0, 0, 0, 1, 1, 1, 0, 0, 0 }, 
-                                        { 0, 0, 0, 1, 1, 1, 0, 0, 0 }, { 0, 0, 0, 1, 1, 1, 1, 0, 0 }, 
-                                        { 0, 0, 1, 1, 1, 1, 1, 0, 0 }, { 0, 0, 0, 0, 1, 1, 0, 0, 0 }, 
-                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-                                        { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+        const int boardDimensions = 9; //X by X board size
 
         public frmGameBoard(Player playerOne, Player playerTwo)
         {
@@ -36,27 +32,34 @@ namespace BattleShipGame
 
         private void GameBoard_Load(object sender, EventArgs e)
         {
-            DisplayBoards(testBoard);
-            Ship[] p1Ships = playerOne.getShips();
-            foreach (Ship ship in p1Ships)
-            {
-                string cords = "P1 SHIP CORDS: ";
-                List<string> shipCords = ship.GetCords();
-                foreach (String cord in shipCords)
-                {
-                    cords += cord + " ";
-                }
-                MessageBox.Show(cords);
-            }
+            playerNum = 1;
+            currentPlayer = playerOne;
+            otherPlayer = playerTwo;
+            DisplayBoards(board);
+            PlaceShips(playerOne.getShipBoard(),playerOne.getShips());
+            PlaceShips(playerTwo.getShipBoard(),playerTwo.getShips());
+
+            pnlGuessBoard_P2.Hide();
+            pnlShipBoard_P2.Hide();
+            pnlShipBoard_P1.Show();
+            pnlGuessBoard_P1.Show();
         }
 
         private void DisplayBoards(int[,] internalBoard)
         {
-            //Create shipBoard
-            shipBoard = GenerateBoard(internalBoard, pnlShipBoard);
-            //Create guessBoard
-            guessBoard = GenerateBoard(internalBoard, pnlGuessBoard);
-            //Give boards to player object
+            //Create and assign shipBoards
+            Button[,] p1shipBoard = GenerateBoard(internalBoard, pnlShipBoard_P1);
+            Button[,] p2shipBoard = GenerateBoard(internalBoard, pnlShipBoard_P2);
+            //Create and assign guessBoards
+            Button[,] p1guessBoard = GenerateBoard(internalBoard, pnlGuessBoard_P1);
+            Button[,] p2guessBoard = GenerateBoard(internalBoard, pnlGuessBoard_P2);
+
+            //Give boards to player objects
+
+            playerOne.setGuessBoard(p1guessBoard);
+            playerOne.setShipBoard(p1shipBoard);
+            playerTwo.setGuessBoard(p2guessBoard);
+            playerTwo.setShipBoard(p2shipBoard);
         }
 
         private Button[,] GenerateBoard(int[,] internalBoard, Panel pnlBoard)
@@ -91,13 +94,9 @@ namespace BattleShipGame
                     };
 
                     board[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
-                    //int value = InternalBoardClass.getCellValue(row, col); Not implemented yet
-                    int value = internalBoard[row, col];
-                    board[row, col].Text = value.ToString();
-                    board[row, col].Tag = value.ToString();
+                    board[row, col].Tag = row.ToString() + "*" + col.ToString();
                     board[row, col].Name = "btn" + row.ToString() + col.ToString();
-                    board[row, col].BackColor = Color.Aqua;
-
+                    board[row, col].BackColor = Color.White;
 
                     //Associates the same event handler with each of the buttons generated
                     board[row, col].MouseClick += new MouseEventHandler(Button_MouseClick);
@@ -118,11 +117,6 @@ namespace BattleShipGame
             }
 
             return board;
-        }
-
-        private void Button_MouseClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void drawVertBar(int x, int y, Panel pnlBoard)
@@ -155,8 +149,6 @@ namespace BattleShipGame
                 TabIndex = 1000
             };
 
-
-
             pnlBoard.Controls.Add(lblHorizBar);
             lblHorizBar.Visible = true;
             lblHorizBar.CreateControl();
@@ -165,54 +157,106 @@ namespace BattleShipGame
         }
 
         //Board Creation End
+        //
+        //
+        //
 
-        //Set the backcolor for the tiles to grey if there is a ship there(Only on the ship board)
-        //Set the backcolor for the tiles to red if there is a hit marked there(On both boards)
-        //Set the backcolor for the tiles to white if there is a miss marked there(On both boards)
-        //Red/White markers on the ship board represent the other players hits/misses. Grey represents current players ships.
-        //Red/white markers on the guess board represent the current players hit/misses
-        //When handle hits/misses etc we just need to change the btn's tag value. E.g. Player 1 clicks on guessBoard[2,2] and its a miss
-        //so set Player 1s guessBoard[2,2].Tag = 3 and Player 2s shipBoard[2,2].Tag = 3
-        public void DisplayShips()
+        private void Button_MouseClick(object sender, EventArgs e)
+        {
+            bool hit = false; ;
+            Ship[] otherPlayerShips = otherPlayer.getShips();
+            Button btn = (Button)sender;
+            string[] IndividualCoords = btn.Tag.ToString().Split('*');
+            string coordinates = btn.Tag.ToString();
+            Button[,] myGuessBoard = currentPlayer.getGuessBoard();
+            Button[,] otherPlayerBoard = otherPlayer.getShipBoard();
+            foreach (Ship ship in otherPlayerShips)
+            {
+                List<string> shipCoords = ship.GetCords();
+                foreach (string c in shipCoords)
+                {
+                    if (c == coordinates)
+                    {
+                        hit = true;
+                        ship.Hit();
+                        MessageBox.Show("Ship hit!!");
+                        // Sets board color to show hit
+                        btn.BackColor = Color.Red;
+                        otherPlayerBoard[Int32.Parse(IndividualCoords[0]), Int32.Parse(IndividualCoords[1])].BackColor = Color.Red;
+
+                        if (ship.IsShipSunk())
+                        {
+                            MessageBox.Show("You sunk the other player's " + ship.getShipType());
+                            currentPlayer.addShipSunk();
+                        }
+                        if (currentPlayer.hasWon())
+                        {
+                            MessageBox.Show("Congratulations, " + currentPlayer.getName() + " you won!!!!");
+                            Close();
+                        }
+                    }
+                }
+            }
+            btn.Enabled = false;
+            if (!hit)
+            {
+                btn.BackColor = Color.Aqua;
+                otherPlayerBoard[Int32.Parse(IndividualCoords[0]), Int32.Parse(IndividualCoords[1])].BackColor = Color.Aqua;
+                MessageBox.Show("Ship missed!!");
+            }
+            if (playerNum == 1)
+            {
+                pnlGuessBoard_P1.Enabled = false;
+            }
+            else
+            {
+                pnlGuessBoard_P2.Enabled = false;
+            }
+        }
+
+        public void PlaceShips(Button[,] shipBoard, Ship[] ships)
         {
             foreach(Button btn in shipBoard)
             {
-                if((string)btn.Tag == "1") {//Ship
-                    btn.BackColor = Color.DarkGray;
-                }
-                else if((string)btn.Tag == "2"){//Hits
-                    btn.BackColor = Color.Red;
-                }
-                else if ((string)btn.Tag == "3")//Miss
+                foreach(Ship ship in ships)
                 {
-                    btn.BackColor = Color.White;
-                }
-            }
-
-            foreach(Button btn in guessBoard)
-            {
-                if((string)btn.Tag == "2")//Hits
-                {
-                    btn.BackColor = Color.Red;
-                }
-                else if ((string)btn.Tag == "3")//Miss
-                {
-                    btn.BackColor = Color.White;
+                    List<String> coords = ship.GetCords();
+                    foreach(string cord in coords)
+                    {
+                        if (btn.Tag.ToString() == cord)
+                        {
+                            btn.BackColor = Color.DarkSlateGray;
+                        }
+                    }
                 }
             }
         }
-        //Use this to set a buttons tag to its new status after a hit/miss
-        //Value represents the new state. (2 = Hit, 3 = Miss) btn is the tile that was clicked/guessed.
-        public void updateTileStatus(Button btn, string value)
-        {
-            btn.Tag = value;
-        }
-
 
         private void btnDoneTurn_Click(object sender, EventArgs e)
         {
-            DisplayShips();
-            
+            pnlGuessBoard_P1.Enabled = true;
+            pnlGuessBoard_P2.Enabled = true;
+
+            if (playerNum == 1)
+            {
+                pnlGuessBoard_P1.Hide();
+                pnlShipBoard_P1.Hide();
+                pnlShipBoard_P2.Show();
+                pnlGuessBoard_P2.Show();
+                currentPlayer = playerTwo;
+                otherPlayer = playerOne;
+                playerNum = 2;
+            }
+            else
+            {
+                pnlGuessBoard_P2.Hide();
+                pnlShipBoard_P2.Hide();
+                pnlShipBoard_P1.Show();
+                pnlGuessBoard_P1.Show();
+                currentPlayer = playerOne;
+                otherPlayer = playerTwo;
+                playerNum = 1;
+            }
         }
     }
 }

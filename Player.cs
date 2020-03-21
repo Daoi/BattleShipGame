@@ -12,7 +12,6 @@ namespace BattleShipGame
         private int ShipSunkCounter;
         private Ship[] ships = new Ship[5];
 
-
         public Player(string name)
         {
             this.name = name;
@@ -21,6 +20,11 @@ namespace BattleShipGame
             ships[2] = new Ship("Submarine", 3);
             ships[3] = new Ship("Cruiser", 3);
             ships[4] = new Ship("Destroyer", 2);
+        }
+
+        public void addShipSunk()
+        {
+            ShipSunkCounter++;
         }
 
         public Button[,] getGuessBoard()
