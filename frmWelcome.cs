@@ -35,7 +35,7 @@ namespace BattleShipGame
 
                 Hide();
                 //frmGameBoard gameBoard = new frmGameBoard();
-                frmShipPlacement placementBoard = new frmShipPlacement(playerOne, playerTwo, 0);
+                frmShipPlacement placementBoard = new frmShipPlacement(playerOne, playerTwo, 1);
                 //gameBoard.Show();
                 placementBoard.Show();
             }

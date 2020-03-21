@@ -17,9 +17,10 @@ namespace BattleShipGame
         public frmShipPlacement(Player one, Player two, int currentPlayer)
         {
             InitializeComponent();
+            playerNum = currentPlayer;
             this.playerOne = one;
             this.playerTwo = two;
-            if(currentPlayer == 0)
+            if(currentPlayer == 1)
             {
                 this.currentPlayer = one;
             }
@@ -33,6 +34,7 @@ namespace BattleShipGame
         Player playerOne;
         Player playerTwo;
         Player currentPlayer;
+        int playerNum;
         int cardCellWidth;
         int cardCellHeight;
         int barWidth = 3;  // Width or thickness of horizontal and vertical bars
@@ -50,7 +52,7 @@ namespace BattleShipGame
             currentInternalBoard = new InternalBoard();
             currentShip = currentPlayer.getShips()[shipNumber];
             GenerateBoard(pnlShipPlacementBoard);
-            lblCurrentPlayerPlacement.Text = "Player one place your ships.";
+            lblCurrentPlayerPlacement.Text = currentPlayer.getName() + " place your ships.";
             lblCurrentShipName.Text = currentShip.getShipType() + " it has a lenght of " + currentShip.getShipSize().ToString();
             shipNumber = 0;
 
@@ -165,6 +167,11 @@ namespace BattleShipGame
 
         private void Button_MouseClickPlacement(object sender, EventArgs e)
         {
+            btnPlaceDown.Enabled = false;
+            btnPlaceLeft.Enabled = false;
+            btnPlaceUp.Enabled = false;
+            btnPlaceRight.Enabled = false;
+
             Button btn = (Button)sender;
             int shipSize = currentShip.getShipSize();
             currentCords = btn.Tag.ToString().Split('*');
@@ -206,6 +213,11 @@ namespace BattleShipGame
             btnPlaceUp.Enabled = false;
             btnPlaceLeft.Enabled = false;
             shipNumber++;
+            if (shipNumber == 5)
+            {
+                btnNextShip.Text = "Next Player";
+                btnNextShip.BackColor = Color.LawnGreen;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
@@ -215,6 +227,7 @@ namespace BattleShipGame
                 currentInternalBoard.placeShip(row, i);
                 board[row, i].BackColor = Color.DarkGray;
             }
+            pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
 
@@ -225,6 +238,11 @@ namespace BattleShipGame
             btnPlaceUp.Enabled = false;
             btnPlaceRight.Enabled = false;
             shipNumber++;
+            if (shipNumber == 5)
+            {
+                btnNextShip.Text = "Next Player";
+                btnNextShip.BackColor = Color.LawnGreen;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
@@ -235,6 +253,7 @@ namespace BattleShipGame
                 currentInternalBoard.placeShip(row, i);
                 board[row, i].BackColor = Color.DarkGray;
             }
+            pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
 
@@ -245,6 +264,11 @@ namespace BattleShipGame
             btnPlaceLeft.Enabled = false;
             btnPlaceUp.Enabled = false;
             shipNumber++;
+            if (shipNumber == 5)
+            {
+                btnNextShip.Text = "Next Player";
+                btnNextShip.BackColor = Color.LawnGreen;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
@@ -254,6 +278,7 @@ namespace BattleShipGame
                 currentInternalBoard.placeShip(i, col);
                 board[i, col].BackColor = Color.DarkGray;
             }
+            pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
 
@@ -264,6 +289,11 @@ namespace BattleShipGame
             btnPlaceUp.Enabled = false;
             btnPlaceDown.Enabled = false;
             shipNumber++;
+            if (shipNumber == 5)
+            {
+                btnNextShip.Text = "Next Player";
+                btnNextShip.BackColor = Color.LawnGreen;
+            }
 
             int row = int.Parse(currentCords[0]);
             int col = int.Parse(currentCords[1]);
@@ -273,23 +303,42 @@ namespace BattleShipGame
                 currentInternalBoard.placeShip(i, col);
                 board[i, col].BackColor = Color.DarkGray;
             }
+            pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
             
         }
 
         private void btnNextShip_Click(object sender, EventArgs e)
         {
-            currentShip = currentPlayer.getShips()[shipNumber];
-            lblCurrentShipName.Text = currentShip.getShipType() + " it has a lenght of " + currentShip.getShipSize().ToString();
-            btnNextShip.Enabled = false;
-            if(shipNumber >= 4)
+            // placed all ships, next player or next form
+            if(shipNumber == 5)
             {
-                frmShipPlacement secondPlayerPlacement = new frmShipPlacement(playerOne, playerTwo, 1);
-                Hide();
-                secondPlayerPlacement.Show();
-                Close();
+                if (playerNum != 1)
+                {
+                    frmGameBoard gameBoard = new frmGameBoard(playerOne, playerTwo);
+                    Hide();
+                    gameBoard.Show();
+                    Close();
+                }
+                else
+                {
+                    frmShipPlacement secondPlayerPlacement = new frmShipPlacement(playerOne, playerTwo, 2);
+                    Hide();
+                    secondPlayerPlacement.Show();
+                    Close();
+                }
+                
 
             }
+            else
+            {
+                // Not placed all ships yet, keep going
+                pnlShipPlacementBoard.Enabled = true;
+                currentShip = currentPlayer.getShips()[shipNumber];
+                lblCurrentShipName.Text = currentShip.getShipType() + " it has a lenght of " + currentShip.getShipSize().ToString();
+                btnNextShip.Enabled = false;
+            }
+            
         }
     }
 }

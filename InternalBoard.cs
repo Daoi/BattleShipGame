@@ -1,4 +1,6 @@
-﻿namespace BattleShipGame
+﻿using System.Windows.Forms;
+
+namespace BattleShipGame
 {
     public class InternalBoard
     {
@@ -17,8 +19,10 @@
         public bool checkLeft(int row, int col, int size)
         {
             if ((col - (size - 1)) < 0)
+            {
                 return false;
-            for(int i = col; i > (col- (size - 1)); i--)
+            }
+            for(int i = col; i > (col-(size)); i--)
             {
                 if(board[row, i] == 1)
                 {
@@ -30,9 +34,11 @@
         //4,4 size = 5 |4 5 6 7 8
         public bool checkRight(int row, int col, int size)
         {
-            if ((col + (size-1)) > 9)
+            if ((col + (size-1)) > 8)
+            {
                 return false;
-            for (int i = col; i < (col+(size-1)); i++)
+            }
+            for (int i = col; i < (col+(size)); i++)
             {
                 if (board[row, i] == 1)
                 {
@@ -44,9 +50,11 @@
 
         public bool checkDown(int row, int col, int size)
         {
-            if ((row + (size - 1)) > 9)
+            if ((row + (size - 1)) > 8)
+            {
                 return false;
-            for (int i = row; i < (row+(size-1)); i++)
+            }
+            for (int i = row; i < (row+(size)); i++)
             {
                 if (board[i, col] == 1)
                 {
@@ -59,11 +67,14 @@
         public bool checkUp(int row, int col, int size)
         {
             if ((row - (size - 1)) < 0)
+            {
                 return false;
-            for (int i = row; i > (row- (size - 1)); i--)
+            }
+            for (int i = row; i > (row-(size)); i--)
             {
                 if (board[i, col] == 1)
                 {
+
                     return false;
                 }
             }

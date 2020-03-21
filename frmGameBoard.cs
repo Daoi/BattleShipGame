@@ -5,7 +5,10 @@ namespace BattleShipGame
 {
     public partial class frmGameBoard : Form
     {
-        Player asdfa = new Player("testPlayer");
+        Player currentPlayer;
+        Player playerOne;
+        Player playerTwo;
+
         Button[,] shipBoard;
         Button[,] guessBoard;
         static int[] testShipCords = { 41, 42, 43, 44, 45 };
@@ -23,9 +26,11 @@ namespace BattleShipGame
                                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
                                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 
-        public frmGameBoard()
+        public frmGameBoard(Player playerOne, Player playerTwo)
         {
             InitializeComponent();
+            this.playerOne = playerOne;
+            this.playerTwo = playerTwo;
         }
 
         private void GameBoard_Load(object sender, EventArgs e)
