@@ -4,7 +4,7 @@ namespace BattleShipGame
 {
     public class InternalBoard
     {
-        int[,] board;
+        private int[,] board;
 
         public InternalBoard()
         {
@@ -22,7 +22,7 @@ namespace BattleShipGame
             {
                 return false;
             }
-            for(int i = col; i > (col-(size)); i--)
+            for(int i = col; i > (col - size); i--)
             {
                 if(board[row, i] == 1)
                 {
@@ -35,11 +35,11 @@ namespace BattleShipGame
         
         public bool checkRight(int row, int col, int size)
         {
-            if ((col + (size-1)) > 8)
+            if ((col + (size - 1)) > 8)
             {
                 return false;
             }
-            for (int i = col; i < (col+(size)); i++)
+            for (int i = col; i < (col + size); i++)
             {
                 if (board[row, i] == 1)
                 {
@@ -55,7 +55,7 @@ namespace BattleShipGame
             {
                 return false;
             }
-            for (int i = row; i < (row+(size)); i++)
+            for (int i = row; i < (row + size); i++)
             {
                 if (board[i, col] == 1)
                 {
@@ -71,7 +71,7 @@ namespace BattleShipGame
             {
                 return false;
             }
-            for (int i = row; i > (row-(size)); i--)
+            for (int i = row; i > (row - size); i--)
             {
                 if (board[i, col] == 1)
                 {

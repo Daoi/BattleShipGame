@@ -9,6 +9,7 @@ namespace BattleShipGame
     {
         //To get the number for the cords array, e.g. for the position [5,6] You do the first ((first index - 1) * 9) + the second index. 
         //e.g. (4*9) + 6 = 42. 42 is the number we add to the array we give to the ship for its location.  
+        private List<int> cord;
         private List<string> cords;
         private int size;
         private int hits;
@@ -21,6 +22,7 @@ namespace BattleShipGame
             hits = 0;
             shipType = type;
             cords = new List<string>();
+            cord = new List<int>(size);
 
         }
 
@@ -51,6 +53,17 @@ namespace BattleShipGame
         {
             return cords;
         }
+
+        public void setCord(int cord)
+        {
+            this.cord.Add(cord);
+        }
+
+        public List<int> getCord()
+        {
+            return cord;
+        }
+
 
         public string getShipType()
         {

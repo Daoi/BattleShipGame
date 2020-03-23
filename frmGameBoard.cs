@@ -12,8 +12,7 @@ namespace BattleShipGame
         Player playerOne;
         Player playerTwo;
         int playerNum;
-
-        int[,] board = new int[9, 9];
+        const int boardDimensions = 9; //X by X board size
 
         int cardCellWidth;
         int cardCellHeight;
@@ -21,13 +20,16 @@ namespace BattleShipGame
         int xcardUpperLeft = 0;
         int ycardUpperLeft = 0;
         int padding = 2;
-        const int boardDimensions = 9; //X by X board size
+
+        int[,] board = new int[boardDimensions, boardDimensions];
+
 
         public frmGameBoard(Player playerOne, Player playerTwo)
         {
             InitializeComponent();
             this.playerOne = playerOne;
             this.playerTwo = playerTwo;
+            lblPlayerXsTurn.Text = "It's " + playerOne.getName() + "'s turn!";
         }
 
         private void GameBoard_Load(object sender, EventArgs e)
@@ -36,8 +38,8 @@ namespace BattleShipGame
             currentPlayer = playerOne;
             otherPlayer = playerTwo;
             DisplayBoards(board);
-            PlaceShips(playerOne.getShipBoard(),playerOne.getShips());
-            PlaceShips(playerTwo.getShipBoard(),playerTwo.getShips());
+            PlaceShipsTwo(playerOne.getShipBoard(),playerOne.getShips());
+            PlaceShipsTwo(playerTwo.getShipBoard(),playerTwo.getShips());
 
             pnlGuessBoard_P2.Hide();
             pnlShipBoard_P2.Hide();
@@ -68,10 +70,10 @@ namespace BattleShipGame
             cardCellHeight = (pnlBoard.Size.Height / boardDimensions) - (padding);
             Size size = new Size(cardCellWidth, cardCellHeight);
             Point loc = new Point(0, 0);
-            int x;
-            int y;
-            x = xcardUpperLeft;
-            y = ycardUpperLeft;
+            int x = 0;
+            int y = 0;
+            //x = xcardUpperLeft;
+            //y = ycardUpperLeft;
             Button[,] board = new Button[boardDimensions, boardDimensions];
             //Top Line
             drawHorizBar(x, y, boardDimensions, pnlBoard);
@@ -94,7 +96,8 @@ namespace BattleShipGame
                     };
 
                     board[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
-                    board[row, col].Tag = row.ToString() + "*" + col.ToString();
+                    //board[row, col].Tag = row.ToString() + "*" + col.ToString();
+                    board[row, col].Tag = ((row * boardDimensions) + col).ToString();
                     board[row, col].Name = "btn" + row.ToString() + col.ToString();
                     board[row, col].BackColor = Color.White;
 
@@ -167,13 +170,16 @@ namespace BattleShipGame
             Ship[] otherPlayerShips = otherPlayer.getShips();
             Button btn = (Button)sender;
             string[] IndividualCoords = btn.Tag.ToString().Split('*');
-            string coordinates = btn.Tag.ToString();
+            //string coordinates = btn.Tag.ToString();
+            int coordinates = int.Parse(btn.Tag.ToString());
             Button[,] myGuessBoard = currentPlayer.getGuessBoard();
             Button[,] otherPlayerBoard = otherPlayer.getShipBoard();
             foreach (Ship ship in otherPlayerShips)
             {
-                List<string> shipCoords = ship.GetCords();
-                foreach (string c in shipCoords)
+                //List<string> shipCoords = ship.GetCords();
+                List<int> shipCoords = ship.getCord();
+                //foreach (string c in shipCoords)
+                foreach(int c in shipCoords)
                 {
                     if (c == coordinates)
                     {
@@ -182,7 +188,8 @@ namespace BattleShipGame
                         MessageBox.Show("Ship hit!!");
                         // Sets board color to show hit
                         btn.BackColor = Color.Red;
-                        otherPlayerBoard[Int32.Parse(IndividualCoords[0]), Int32.Parse(IndividualCoords[1])].BackColor = Color.Red;
+                        //otherPlayerBoard[Int32.Parse(IndividualCoords[0]), Int32.Parse(IndividualCoords[1])].BackColor = Color.Red;
+                        otherPlayerBoard[getRow(coordinates), getCol(coordinates)].BackColor = Color.Red;
 
                         if (ship.IsShipSunk())
                         {
@@ -201,7 +208,8 @@ namespace BattleShipGame
             if (!hit)
             {
                 btn.BackColor = Color.Aqua;
-                otherPlayerBoard[Int32.Parse(IndividualCoords[0]), Int32.Parse(IndividualCoords[1])].BackColor = Color.Aqua;
+                //otherPlayerBoard[Int32.Parse(IndividualCoords[0]), Int32.Parse(IndividualCoords[1])].BackColor = Color.Aqua;
+                otherPlayerBoard[getRow(coordinates), getCol(coordinates)].BackColor = Color.Aqua;
                 MessageBox.Show("Ship missed!!");
             }
             if (playerNum == 1)
@@ -232,6 +240,17 @@ namespace BattleShipGame
             }
         }
 
+        public void PlaceShipsTwo(Button[,] shipBoard, Ship[] ships)
+        {
+            foreach(Ship ship in ships)
+            {
+                for(int i = 0; i < ship.getShipSize(); i++)
+                {
+                    shipBoard[ship.getCord()[i] / 9, ship.getCord()[i] % 9].BackColor = Color.DarkSlateGray;
+                }
+            }
+        }
+
         private void btnDoneTurn_Click(object sender, EventArgs e)
         {
             pnlGuessBoard_P1.Enabled = true;
@@ -246,6 +265,7 @@ namespace BattleShipGame
                 currentPlayer = playerTwo;
                 otherPlayer = playerOne;
                 playerNum = 2;
+                lblPlayerXsTurn.Text = "It's " + playerTwo.getName() + "'s turn!";
             }
             else
             {
@@ -256,7 +276,10 @@ namespace BattleShipGame
                 currentPlayer = playerOne;
                 otherPlayer = playerTwo;
                 playerNum = 1;
+                lblPlayerXsTurn.Text = "It's " + playerOne.getName() + "'s turn!";
             }
         }
+        public int getRow(int tile) { return tile / 9; }
+        public int getCol(int tile) { return tile % 9; }
     }
 }
