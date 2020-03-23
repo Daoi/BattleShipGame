@@ -33,16 +33,9 @@ namespace BattleShipGame
         Player playerTwo;
         Player currentPlayer;
         int playerNum;
-        int cardCellWidth;
-        int cardCellHeight;
-        int barWidth = 3;  // Width or thickness of horizontal and vertical bars
-        int xcardUpperLeft = 0;
-        int ycardUpperLeft = 0;
-        int padding = 2;
         const int boardDimensions = 9; //X by X board size
         Ship currentShip;
         InternalBoard currentInternalBoard;
-        //string[] currentCords = new string[2];
         int currentCords;
         int shipNumber; //Counter for ship list
 
@@ -56,108 +49,7 @@ namespace BattleShipGame
             shipNumber = 0;
         }
 
-        private Button[,] GenerateBoard(Panel pnlBoard)
-        {
-            cardCellWidth = (pnlBoard.Size.Width / boardDimensions) - (padding);
-            cardCellHeight = (pnlBoard.Size.Height / boardDimensions) - (padding);
-            Size size = new Size(cardCellWidth, cardCellHeight);
-            Point loc = new Point(0, 0);
-            int x = 0;
-            int y = 0;
-            //x = xcardUpperLeft;
-            //y = ycardUpperLeft;
-            board = new Button[boardDimensions, boardDimensions];
-            //Top Line
-            drawHorizBar(x, y, boardDimensions, pnlBoard);
-            y = y + barWidth;
-
-            //Button Start
-            drawVertBar(x, y, pnlBoard);
-            for (int row = 0; row < boardDimensions; row++)
-            {
-                loc.Y = row * (size.Height + padding);
-
-                for (int col = 0; col < boardDimensions; col++)
-                {
-                    board[row, col] = new Button
-                    {
-                        Location = new Point(col * (size.Width + padding) + barWidth, loc.Y),
-                        Size = size,
-                        Font = new Font("Arial", 24, FontStyle.Bold),
-                        Enabled = true
-                    };
-
-                    board[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
-                    //board[row, col].Tag = row.ToString() + "*" + col.ToString();
-                    board[row, col].Tag = ((row * boardDimensions) + col).ToString();
-                    board[row, col].Name = "btn" + row.ToString() + col.ToString();
-                    board[row, col].BackColor = Color.White;
-
-                    //Associates the same event handler with each of the buttons generated
-                    board[row, col].MouseClick += new MouseEventHandler(Button_MouseClickPlacement);
-
-                    // Add button to the form
-                    pnlBoard.Controls.Add(board[row, col]);
-
-                    // Draw vertical line                 
-                    x += cardCellWidth + padding;
-                    if (row == 0) drawVertBar(x, y, pnlBoard);
-                } // end for col
-                // One row now complete
-
-                // Draw bottom line
-                x = xcardUpperLeft;
-                y = y + cardCellHeight + padding;
-                drawHorizBar(x, y - 6, boardDimensions, pnlBoard);
-            }
-
-            return board;
-        }
-
-        private void drawVertBar(int x, int y, Panel pnlBoard)
-        {
-            Color backColor = Color.Black;
-
-            Label lblVertBar = new Label
-            {
-                BackColor = backColor,
-                Location = new System.Drawing.Point(x, y),
-                Name = "lblVertBar" + x.ToString(),
-                Size = new System.Drawing.Size(barWidth, (cardCellHeight + padding) * boardDimensions),
-                TabIndex = 1000
-            };
-            pnlBoard.Controls.Add(lblVertBar);
-            lblVertBar.Visible = true;
-            lblVertBar.CreateControl();
-            lblVertBar.Show();
-        }
-
-        private void drawHorizBar(int x, int y, int cardSize, Panel pnlBoard)
-        {
-            Color backColor = Color.Black;
-            Label lblHorizBar = new Label
-            {
-                BackColor = backColor,
-                Location = new System.Drawing.Point(x, y),
-                Name = "lblHorizBar" + y.ToString(),
-                Size = new System.Drawing.Size((cardCellWidth + padding) * cardSize, barWidth),
-                TabIndex = 1000
-            };
-
-            pnlBoard.Controls.Add(lblHorizBar);
-            lblHorizBar.Visible = true;
-            lblHorizBar.CreateControl();
-            lblHorizBar.Show();
-            x = x + cardCellWidth;
-        }
-
-        //Board Creation End
-        //
-        //
-        //
-        //
-        
-            
+              
         //Method for handling clicking on a grid to place origin there.
         private void Button_MouseClickPlacement(object sender, EventArgs e)
         {
@@ -168,7 +60,6 @@ namespace BattleShipGame
 
             Button btn = (Button)sender;
             int shipSize = currentShip.getShipSize();
-            //currentCords = btn.Tag.ToString().Split('*');
             currentCords = int.Parse(btn.Tag.ToString());
 
             StringBuilder sb = new StringBuilder("You can place your ship in the following orientations:"); 
@@ -224,15 +115,12 @@ namespace BattleShipGame
             int row = getRow(currentCords);
             int col = getCol(currentCords);
             int size = currentShip.getShipSize();
-            //List<string> shipCords = new List<string>();
             for (int i = col; i != (col-(size)); i-- )
             {
                 currentInternalBoard.placeShip(row, i);
                 board[row, i].BackColor = Color.DarkSlateGray;
-                //shipCords.Add(row + "*" + i);
                 currentShip.setCord(getTile(row, i));
             }
-            //currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
@@ -256,20 +144,15 @@ namespace BattleShipGame
                 btnNextShip.ForeColor = Color.White;
             }
 
-            //int row = int.Parse(currentCords[0]);
-            //int col = int.Parse(currentCords[1]);
             int row = getRow(currentCords);
             int col = getCol(currentCords);
             int size = currentShip.getShipSize();
-            //List<string> shipCords = new List<string>();
             for (int i = col; i != (col + (size)); i++)
             {
                 currentInternalBoard.placeShip(row, i);
                 board[row, i].BackColor = Color.DarkSlateGray;
                 currentShip.setCord(getTile(row, i));
-                //shipCords.Add(row + "*" + i);
             }
-            //currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
@@ -293,21 +176,16 @@ namespace BattleShipGame
                 btnNextShip.ForeColor = Color.White;
             }
 
-            //int row = int.Parse(currentCords[0]);
-            //int col = int.Parse(currentCords[1]);
             int row = getRow(currentCords);
             int col = getCol(currentCords);
             int size = currentShip.getShipSize();
-            //List<string> shipCords = new List<string>();
             for (int i = row; i != (row - (size)); i--)
             {
                 currentInternalBoard.placeShip(i, col);
                 board[i, col].BackColor = Color.DarkSlateGray;
-                //shipCords.Add(i + "*" + col);
                 currentShip.setCord(getTile(i,col));
 
             }
-            //currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
@@ -331,21 +209,16 @@ namespace BattleShipGame
                 btnNextShip.ForeColor = Color.White;
             }
 
-            //int row = int.Parse(currentCords[0]);
-            //int col = int.Parse(currentCords[1]);
             int row = getRow(currentCords);
             int col = getCol(currentCords);
             int size = currentShip.getShipSize();
-            //List<string> shipCords = new List<string>();
             for (int i = row; i != (row + (size)); i++)
             {
                 currentInternalBoard.placeShip(i, col);
                 board[i, col].BackColor = Color.DarkSlateGray;
-                //shipCords.Add(i + "*" + col);
                 currentShip.setCord(getTile(i, col));
 
             }
-            //currentShip.setCords(shipCords);
             pnlShipPlacementBoard.Enabled = false;
             btnNextShip.Enabled = true;
         }
