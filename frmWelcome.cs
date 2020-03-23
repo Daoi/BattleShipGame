@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BattleShipGame
@@ -28,10 +21,8 @@ namespace BattleShipGame
                 Player playerTwo = new Player(txtPlayerTwo.Text);
 
                 Hide();
-                //frmGameBoard gameBoard = new frmGameBoard();
                 frmShipPlacement placementBoard = new frmShipPlacement(playerOne, playerTwo, 1);
                 placementBoard.Show();
-                //gameBoard.Show();
             }
         }
 

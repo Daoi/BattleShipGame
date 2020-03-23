@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace BattleShipGame
+﻿namespace BattleShipGame
 {
     public class InternalBoard
     {

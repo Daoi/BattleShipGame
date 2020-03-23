@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
+
 
 namespace BattleShipGame
 {
@@ -21,7 +19,6 @@ namespace BattleShipGame
             this.size = size;
             hits = 0;
             shipType = type;
-            cords = new List<string>();
             cord = new List<int>(size);
 
         }
@@ -34,24 +31,6 @@ namespace BattleShipGame
         public void Hit()
         {
             hits++;
-        }
-
-        public int[] getIndex(int tile)
-        {
-            //indices[0] = row index, indices[1] = col index.
-            int[] index = { tile / 9, tile % 9 };
-            MessageBox.Show("row index: " + index[0].ToString() + " col index:" + index[1].ToString());//For illustration
-            return index;
-        }
-
-        public void setCords(List<string> cords) 
-        {
-            this.cords = cords;
-        }
-
-        public List<string> GetCords()
-        {
-            return cords;
         }
 
         public void setCord(int cord)

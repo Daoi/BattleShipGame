@@ -23,8 +23,6 @@ namespace BattleShipGame
             Point loc = new Point(0, 0);
             int x = 0;
             int y = 0;
-            //x = xcardUpperLeft;
-            //y = ycardUpperLeft;
             board = new Button[boardDimensions, boardDimensions];
             //Top Line
             drawHorizBar(x, y, boardDimensions, pnlBoard);
@@ -53,7 +51,6 @@ namespace BattleShipGame
                     board[row, col].BackColor = Color.White;
 
                     //Associates the same event handler with each of the buttons generated
-                    //board[row, col].MouseClick += new MouseEventHandler(Button_MouseClickPlacement);
                     board[row, col].MouseClick += new MouseEventHandler(mouseClick);
 
                     // Add button to the form
@@ -77,7 +74,6 @@ namespace BattleShipGame
         public static void drawVertBar(int x, int y, Panel pnlBoard)
         {
             Color backColor = Color.Black;
-
             Label lblVertBar = new Label
             {
                 BackColor = backColor,

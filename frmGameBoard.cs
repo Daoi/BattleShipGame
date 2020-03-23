@@ -62,7 +62,6 @@ namespace BattleShipGame
             bool hit = false;
             Ship[] otherPlayerShips = otherPlayer.getShips();
             Button btn = (Button)sender;
-            string[] IndividualCoords = btn.Tag.ToString().Split('*');
             int coordinates = int.Parse(btn.Tag.ToString());
             Button[,] myGuessBoard = currentPlayer.getGuessBoard();
             Button[,] otherPlayerBoard = otherPlayer.getShipBoard();
