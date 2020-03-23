@@ -13,7 +13,6 @@ C:\Users\Mrah\source\repos\BattleShipGame\BattleShipGame\obj\Debug\BattleShipGam
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\bin\Debug\BattleShipGame.exe.config
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\bin\Debug\BattleShipGame.exe
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\bin\Debug\BattleShipGame.pdb
-C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.csprojResolveAssemblyReference.cache
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.frmWelcome.resources
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.frmGameBoard.resources
 C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.Properties.Resources.resources
@@ -32,3 +31,5 @@ C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-mast
 C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.csproj.GenerateResource.Cache
 C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.exe
 C:\Users\Christopher\Downloads\BattleShipGame-master UPDATED\BattleShipGame-master\obj\Debug\BattleShipGame.pdb
+C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.csprojAssemblyReference.cache
+C:\Users\Christopher\Documents\GitHub\BattleShipGame\obj\Debug\BattleShipGame.csproj.CoreCompileInputs.cache
