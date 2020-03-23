@@ -7,6 +7,7 @@ namespace BattleShipGame
 {
     public partial class frmGameBoard : Form
     {
+       
         Player currentPlayer;
         Player otherPlayer;
         Player playerOne;
@@ -50,11 +51,11 @@ namespace BattleShipGame
         private void DisplayBoards(int[,] internalBoard)
         {
             //Create and assign shipBoards
-            Button[,] p1shipBoard = GenerateBoard(internalBoard, pnlShipBoard_P1);
-            Button[,] p2shipBoard = GenerateBoard(internalBoard, pnlShipBoard_P2);
+            Button[,] p1shipBoard = BoardHandler.GenerateBoard(pnlShipBoard_P1, Button_MouseClick);
+            Button[,] p2shipBoard = BoardHandler.GenerateBoard(pnlShipBoard_P2, Button_MouseClick);
             //Create and assign guessBoards
-            Button[,] p1guessBoard = GenerateBoard(internalBoard, pnlGuessBoard_P1);
-            Button[,] p2guessBoard = GenerateBoard(internalBoard, pnlGuessBoard_P2);
+            Button[,] p1guessBoard = BoardHandler.GenerateBoard(pnlGuessBoard_P1, Button_MouseClick);
+            Button[,] p2guessBoard = BoardHandler.GenerateBoard(pnlGuessBoard_P2, Button_MouseClick);
 
             //Give boards to player objects
 

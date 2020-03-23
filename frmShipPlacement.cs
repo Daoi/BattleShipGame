@@ -50,7 +50,7 @@ namespace BattleShipGame
         {
             currentInternalBoard = new InternalBoard();
             currentShip = currentPlayer.getShips()[shipNumber];
-            GenerateBoard(pnlShipPlacementBoard);
+            board = BoardHandler.GenerateBoard(pnlShipPlacementBoard, Button_MouseClickPlacement);
             lblCurrentPlayerPlacement.Text = currentPlayer.getName() + " place your ships.";
             lblCurrentShipName.Text = currentShip.getShipType() + ", it has a length of " + currentShip.getShipSize().ToString();
             shipNumber = 0;
@@ -152,6 +152,7 @@ namespace BattleShipGame
         }
 
         //Board Creation End
+        //
         //
         //
         //
