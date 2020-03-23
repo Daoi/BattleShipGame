@@ -105,6 +105,7 @@
             this.Controls.Add(this.btnPlayGame);
             this.Name = "frmWelcome";
             this.Text = "Welcome to Battleship";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmWelcome_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

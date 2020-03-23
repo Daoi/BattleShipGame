@@ -7,7 +7,6 @@ namespace BattleShipGame
 {
     public partial class frmGameBoard : Form
     {
-       
         Player currentPlayer;
         Player otherPlayer;
         Player playerOne;
@@ -15,7 +14,6 @@ namespace BattleShipGame
         int playerNum;
         const int boardDimensions = 9; //X by X board size
         int[,] board = new int[boardDimensions, boardDimensions];
-
 
         public frmGameBoard(Player playerOne, Player playerTwo)
         {
@@ -34,6 +32,7 @@ namespace BattleShipGame
             PlaceShips(playerOne.getShipBoard(),playerOne.getShips());
             PlaceShips(playerTwo.getShipBoard(),playerTwo.getShips());
 
+            btnDoneTurn.Enabled = false;
             pnlGuessBoard_P2.Hide();
             pnlShipBoard_P2.Hide();
             pnlShipBoard_P1.Show();
@@ -57,10 +56,10 @@ namespace BattleShipGame
             playerTwo.setShipBoard(p2shipBoard);
         }
 
-
         private void Button_MouseClick(object sender, EventArgs e)
         {
-            bool hit = false; ;
+            btnDoneTurn.Enabled = true;
+            bool hit = false;
             Ship[] otherPlayerShips = otherPlayer.getShips();
             Button btn = (Button)sender;
             string[] IndividualCoords = btn.Tag.ToString().Split('*');
@@ -76,19 +75,19 @@ namespace BattleShipGame
                     {
                         hit = true;
                         ship.Hit();
-                        MessageBox.Show("Ship hit!!");
+                        MessageBox.Show("Ship hit!!", "Hit");
                         // Sets board color to show hit
                         btn.BackColor = Color.Red;
                         otherPlayerBoard[getRow(coordinates), getCol(coordinates)].BackColor = Color.Red;
 
                         if (ship.IsShipSunk())
                         {
-                            MessageBox.Show("You sunk the other player's " + ship.getShipType());
+                            MessageBox.Show("You sunk the other player's " + ship.getShipType(), "Ship Sunk");
                             currentPlayer.addShipSunk();
                         }
                         if (currentPlayer.hasWon())
                         {
-                            MessageBox.Show("Congratulations, " + currentPlayer.getName() + " you won!!!!");
+                            MessageBox.Show("Congratulations, " + currentPlayer.getName() + " you won!!!!", "Game Over");
                             Close();
                         }
                     }
@@ -99,7 +98,7 @@ namespace BattleShipGame
             {
                 btn.BackColor = Color.Aqua;
                 otherPlayerBoard[getRow(coordinates), getCol(coordinates)].BackColor = Color.Aqua;
-                MessageBox.Show("Ship missed!!");
+                MessageBox.Show("Ship missed!!", "Miss");
             }
             if (playerNum == 1)
             {
@@ -110,7 +109,6 @@ namespace BattleShipGame
                 pnlGuessBoard_P2.Enabled = false;
             }
         }
-
 
         public void PlaceShips(Button[,] shipBoard, Ship[] ships)
         {
@@ -127,6 +125,7 @@ namespace BattleShipGame
         {
             pnlGuessBoard_P1.Enabled = true;
             pnlGuessBoard_P2.Enabled = true;
+            btnDoneTurn.Enabled = false;
 
             if (playerNum == 1)
             {
@@ -151,7 +150,13 @@ namespace BattleShipGame
                 lblPlayerXsTurn.Text = "It's " + playerOne.getName() + "'s turn!";
             }
         }
+
         public int getRow(int tile) { return tile / 9; }
         public int getCol(int tile) { return tile % 9; }
+
+        private void frmGameBoard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

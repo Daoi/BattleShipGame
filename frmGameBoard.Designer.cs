@@ -305,6 +305,7 @@
             this.Controls.Add(this.pnlGuessBoard_P2);
             this.Name = "frmGameBoard";
             this.Text = "Battleship";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmGameBoard_FormClosed);
             this.Load += new System.EventHandler(this.GameBoard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

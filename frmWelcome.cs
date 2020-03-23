@@ -21,7 +21,7 @@ namespace BattleShipGame
         {
             if (string.IsNullOrWhiteSpace(txtPlayerOne.Text) || string.IsNullOrWhiteSpace(txtPlayerTwo.Text))
             {
-                MessageBox.Show("Enter a name", "Invalid Name");
+                MessageBox.Show("Enter both player names", "Invalid Name");
             }
             else {
                 Player playerOne = new Player(txtPlayerOne.Text);
@@ -30,9 +30,14 @@ namespace BattleShipGame
                 Hide();
                 //frmGameBoard gameBoard = new frmGameBoard();
                 frmShipPlacement placementBoard = new frmShipPlacement(playerOne, playerTwo, 1);
-                //gameBoard.Show();
                 placementBoard.Show();
+                //gameBoard.Show();
             }
+        }
+
+        private void frmWelcome_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

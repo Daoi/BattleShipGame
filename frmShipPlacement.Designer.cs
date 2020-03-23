@@ -157,6 +157,7 @@
             this.Controls.Add(this.pnlShipPlacementBoard);
             this.Name = "frmShipPlacement";
             this.Text = "Ship Placement";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmShipPlacement_FormClosed);
             this.Load += new System.EventHandler(this.frmShipPlacement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

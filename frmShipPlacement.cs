@@ -28,6 +28,7 @@ namespace BattleShipGame
             }
         }
 
+        frmWelcome welcome;
         Button[,] board;
         Player playerOne;
         Player playerTwo;
@@ -233,14 +234,12 @@ namespace BattleShipGame
                     frmGameBoard gameBoard = new frmGameBoard(playerOne, playerTwo);
                     Hide();
                     gameBoard.Show();
-                    Close();
                 }
                 else
                 {
                     frmShipPlacement secondPlayerPlacement = new frmShipPlacement(playerOne, playerTwo, 2);
                     Hide();
                     secondPlayerPlacement.Show();
-                    Close();
                 }
             }
             else
@@ -256,5 +255,10 @@ namespace BattleShipGame
         public int getRow(int tile) { return tile / 9; }
         public int getCol(int tile) { return tile % 9; }
         public int getTile(int row, int col) { return ((row * 9) + col); }
+
+        private void frmShipPlacement_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
