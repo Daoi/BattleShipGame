@@ -46,7 +46,7 @@
             this.btnPlayGame.TabIndex = 0;
             this.btnPlayGame.Text = "Play Game";
             this.btnPlayGame.UseVisualStyleBackColor = false;
-            this.btnPlayGame.Click += new System.EventHandler(this.doStuff);
+            this.btnPlayGame.Click += new System.EventHandler(this.btnPlayGame_Click);
             // 
             // txtPlayerOne
             // 

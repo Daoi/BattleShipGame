@@ -15,6 +15,8 @@ namespace BattleShipGame
         const int padding = 2;
         const int boardDimensions = 9; //X by X board size
 
+        // Class was pulled from bingo project and slightly modified for our needs
+        // Class builds physical boards that game users interact with
         public static Button[,] GenerateBoard(Panel pnlBoard, Action<object, EventArgs> mouseClick)
         {
             cardCellWidth = (pnlBoard.Size.Width / boardDimensions) - (padding);

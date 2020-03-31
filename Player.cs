@@ -5,13 +5,14 @@ namespace BattleShipGame
     public class Player
     {
         const int numberOfShips = 5;
-        private Button[,] guessBoard = new Button[9, 9];
-        private Button[,] shipBoard = new Button[9, 9];
+        private Button[,] guessBoard;
+        private Button[,] shipBoard;
         private string name;
-        private InternalBoard internalBoard = new InternalBoard();
-        private int ShipSunkCounter;
+        private int ShipSunkCounter = 0;
         private Ship[] ships = new Ship[5];
 
+        // Player class constructor
+        // Assigns player name and creates ship array with all ships
         public Player(string name)
         {
             this.name = name;
@@ -22,51 +23,49 @@ namespace BattleShipGame
             ships[4] = new Ship("Destroyer", 2);
         }
 
+        // Method that increments ship sunk counter
         public void addShipSunk()
         {
             ShipSunkCounter++;
         }
 
+        // Getter for players guessboard
         public Button[,] getGuessBoard()
         {
             return guessBoard;
         }
 
+        // Getter for players ship board
         public Button[,] getShipBoard()
         {
             return shipBoard;
         }
 
+        // Method that checks if player has won
         public bool hasWon()
         {
             return ShipSunkCounter == numberOfShips;
         }
 
+        // Setter for guess board
         public void setGuessBoard(Button[,] gb)
         {
             guessBoard = gb;
         }
 
+        // Setter for ship board
         public void setShipBoard(Button[,] sb)
         {
             shipBoard = sb;
         }
 
-        public void setInternalBoard(InternalBoard ib)
-        {
-            internalBoard = ib;
-        }
-
-        public InternalBoard getInternalBoard()
-        {
-            return internalBoard;
-        }
-
+        // Getter for player name
         public string getName()
         {
             return name;
         }
 
+        // Getter for ship array
         public Ship[] getShips()
         {
             return ships;

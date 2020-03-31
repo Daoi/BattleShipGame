@@ -5,18 +5,22 @@ namespace BattleShipGame
 {
     public partial class frmWelcome : Form
     {
+        // Form constructor
         public frmWelcome()
         {
             InitializeComponent();
         }
 
-        private void doStuff(object sender, EventArgs e)
+        // Play game click handler
+        // Checks that names are both entered, then loads placement board for P1 if valid
+        private void btnPlayGame_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtPlayerOne.Text) || string.IsNullOrWhiteSpace(txtPlayerTwo.Text))
             {
                 MessageBox.Show("Enter both player names", "Invalid Name");
             }
-            else {
+            else
+            {
                 Player playerOne = new Player(txtPlayerOne.Text);
                 Player playerTwo = new Player(txtPlayerTwo.Text);
 
@@ -26,9 +30,11 @@ namespace BattleShipGame
             }
         }
 
+        // Form closed event handler
         private void frmWelcome_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }
