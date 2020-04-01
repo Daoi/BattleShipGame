@@ -43,14 +43,11 @@ namespace BattleShipGame
                         Location = new Point(col * (size.Width + padding) + barWidth, loc.Y),
                         Size = size,
                         Font = new Font("Arial", 24, FontStyle.Bold),
-                        Enabled = true
+                        Enabled = true,
+                        Tag = ((row * boardDimensions) + col).ToString(),
+                        BackColor = Color.White,
+                        Name = "btn" + row.ToString() + col.ToString()
                     };
-
-                    board[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
-                    //board[row, col].Tag = row.ToString() + "*" + col.ToString();
-                    board[row, col].Tag = ((row * boardDimensions) + col).ToString();
-                    board[row, col].Name = "btn" + row.ToString() + col.ToString();
-                    board[row, col].BackColor = Color.White;
 
                     //Associates the same event handler with each of the buttons generated
                     board[row, col].MouseClick += new MouseEventHandler(mouseClick);

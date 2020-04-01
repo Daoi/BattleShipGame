@@ -144,24 +144,17 @@ namespace BattleShipGame
                 // Switch to player 2
                 pnlGuessBoard_P1.Hide();
                 pnlShipBoard_P1.Hide();
-                pnlShipBoard_P2.Show();
-                pnlGuessBoard_P2.Show();
-                currentPlayer = playerTwo;
-                otherPlayer = playerOne;
-                playerNum = 2;
-                lblPlayerXsTurn.Text = "It's " + playerTwo.getName() + "'s turn!";
+                btnSwitchPlayers.Visible = true;
+                btnSwitchPlayers.Enabled = true;
             }
             else
             {
                 // Switch to player 1
                 pnlGuessBoard_P2.Hide();
                 pnlShipBoard_P2.Hide();
-                pnlShipBoard_P1.Show();
-                pnlGuessBoard_P1.Show();
-                currentPlayer = playerOne;
-                otherPlayer = playerTwo;
-                playerNum = 1;
-                lblPlayerXsTurn.Text = "It's " + playerOne.getName() + "'s turn!";
+                btnSwitchPlayers.Visible = true;
+                btnSwitchPlayers.Enabled = true;
+
             }
         }
 
@@ -172,6 +165,32 @@ namespace BattleShipGame
         private void frmGameBoard_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnSwitchPlayers_Click(object sender, EventArgs e)
+        {
+            if(playerNum == 1)
+            {
+                pnlShipBoard_P2.Show();
+                pnlGuessBoard_P2.Show();
+                currentPlayer = playerTwo;
+                otherPlayer = playerOne;
+                playerNum = 2;
+                lblPlayerXsTurn.Text = "It's " + playerTwo.getName() + "'s turn!";
+                btnSwitchPlayers.Visible = false;
+                btnSwitchPlayers.Enabled = false;
+            }
+            else
+            {
+                pnlShipBoard_P1.Show();
+                pnlGuessBoard_P1.Show();
+                currentPlayer = playerOne;
+                otherPlayer = playerTwo;
+                playerNum = 1;
+                lblPlayerXsTurn.Text = "It's " + playerOne.getName() + "'s turn!";
+                btnSwitchPlayers.Visible = false;
+                btnSwitchPlayers.Enabled = false;
+            }
         }
     }
 }

@@ -51,6 +51,7 @@
             this.lblI = new System.Windows.Forms.Label();
             this.lblNumbers = new System.Windows.Forms.Label();
             this.lblPlayerXsTurn = new System.Windows.Forms.Label();
+            this.btnSwitchPlayers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlShipBoard_P2
@@ -275,11 +276,23 @@
             this.lblPlayerXsTurn.Size = new System.Drawing.Size(0, 20);
             this.lblPlayerXsTurn.TabIndex = 24;
             // 
+            // btnSwitchPlayers
+            // 
+            this.btnSwitchPlayers.Location = new System.Drawing.Point(707, 648);
+            this.btnSwitchPlayers.Name = "btnSwitchPlayers";
+            this.btnSwitchPlayers.Size = new System.Drawing.Size(92, 23);
+            this.btnSwitchPlayers.TabIndex = 0;
+            this.btnSwitchPlayers.Text = "Switch Players";
+            this.btnSwitchPlayers.UseVisualStyleBackColor = true;
+            this.btnSwitchPlayers.Visible = false;
+            this.btnSwitchPlayers.Click += new System.EventHandler(this.btnSwitchPlayers_Click);
+            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btnSwitchPlayers);
             this.Controls.Add(this.lblPlayerXsTurn);
             this.Controls.Add(this.lblNumbers);
             this.Controls.Add(this.lblI);
@@ -336,5 +349,6 @@
         private System.Windows.Forms.Label lblI;
         private System.Windows.Forms.Label lblNumbers;
         private System.Windows.Forms.Label lblPlayerXsTurn;
+        private System.Windows.Forms.Button btnSwitchPlayers;
     }
 }
