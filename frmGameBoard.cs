@@ -132,7 +132,8 @@ namespace BattleShipGame
         }
 
         // Click handler for done turn button
-        // Swaps back and forth between each player
+        // Prepares board to swap by hiding current guess/ship board to prevent cheating, assuming
+        //both players are on the same pc.
         private void btnDoneTurn_Click(object sender, EventArgs e)
         {
             pnlGuessBoard_P1.Enabled = true;
@@ -167,6 +168,7 @@ namespace BattleShipGame
             Application.Exit();
         }
 
+        //Finishes swapping current player
         private void btnSwitchPlayers_Click(object sender, EventArgs e)
         {
             if(playerNum == 1)
