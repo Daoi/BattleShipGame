@@ -92,7 +92,7 @@ namespace BattleShipGame
                         if (currentPlayer.hasWon())
                         {
                             // Current player sunk last ship and won
-                            MessageBox.Show("Congratulations, " + currentPlayer.getName() + " you won!!!!", "Game Over");
+                            MessageBox.Show("Congratulations " + currentPlayer.getName() + ", you won!!!!", "Game Over");
                             Close();
                         }
                     }

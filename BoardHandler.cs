@@ -70,6 +70,8 @@ namespace BattleShipGame
             return board;
         }
 
+
+        // Supporting method that draws lines on the board to seperate cells
         public static void drawVertBar(int x, int y, Panel pnlBoard)
         {
             Color backColor = Color.Black;
@@ -87,6 +89,7 @@ namespace BattleShipGame
             lblVertBar.Show();
         }
 
+        // Supporting method that draws lines on the board to seperate cells
         public static void drawHorizBar(int x, int y, int cardSize, Panel pnlBoard)
         {
             Color backColor = Color.Black;
