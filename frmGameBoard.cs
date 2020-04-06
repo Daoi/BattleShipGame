@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
+// Christopher Harms, Kevin Lynch
+// CIS 3309 - 001
+// April 5th, 2020
+// Project 3 - Battleship
+
 namespace BattleShipGame
 {
     public partial class frmGameBoard : Form

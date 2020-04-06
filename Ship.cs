@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
 
+// Christopher Harms, Kevin Lynch
+// CIS 3309 - 001
+// April 5th, 2020
+// Project 3 - Battleship
 
 namespace BattleShipGame
 {
+    // Class that models the ships
     public class Ship
     {
         //To get the number for the cords array, e.g. for the position [5,6] You do the first ((first index - 1) * 9) + the second index. 

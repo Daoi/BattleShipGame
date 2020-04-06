@@ -1,7 +1,13 @@
 ﻿using System.Windows.Forms;
 
+// Christopher Harms, Kevin Lynch
+// CIS 3309 - 001
+// April 5th, 2020
+// Project 3 - Battleship
+
 namespace BattleShipGame
 {
+    // Class that models the players, contains all important data assigned to players during play
     public class Player
     {
         const int numberOfShips = 5;

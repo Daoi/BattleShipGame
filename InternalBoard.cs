@@ -1,5 +1,11 @@
-﻿namespace BattleShipGame
+﻿// Christopher Harms, Kevin Lynch
+// CIS 3309 - 001
+// April 5th, 2020
+// Project 3 - Battleship
+
+namespace BattleShipGame
 {
+    // Class that models the internal 2D board array, used during ship placement to track where player's place ships
     public class InternalBoard
     {
         private int[,] board;
